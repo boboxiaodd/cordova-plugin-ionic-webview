@@ -130,16 +130,18 @@
 }
 
 -(NSString *) getStartPath {
-    NSString * wwwPath = [[NSBundle mainBundle] pathForResource:@"www" ofType: nil];
-
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString * persistedPath = [userDefaults objectForKey:CDV_SERVER_PATH];
-    if (![self isDeployDisabled] && ![self isNewBinary] && persistedPath && ![persistedPath isEqualToString:@""]) {
-        NSString *libPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString * cordovaDataDirectory = [libPath stringByAppendingPathComponent:@"NoCloud"];
-        NSString * snapshots = [cordovaDataDirectory stringByAppendingPathComponent:@"ionic_built_snapshots"];
-        wwwPath = [snapshots stringByAppendingPathComponent:[persistedPath lastPathComponent]];
-    }
+//     NSString * wwwPath = [[NSBundle mainBundle] pathForResource:@"www" ofType: nil];
+       NSString *libPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+       NSString * cordovaDataDirectory = [libPath stringByAppendingPathComponent:@"NoCloud"];
+       NSString * wwwPath = [cordovaDataDirectory stringByAppendingPathComponent:@"www"];
+//     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//     NSString * persistedPath = [userDefaults objectForKey:CDV_SERVER_PATH];
+//     if (![self isDeployDisabled] && ![self isNewBinary] && persistedPath && ![persistedPath isEqualToString:@""]) {
+//         NSString *libPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//         NSString * cordovaDataDirectory = [libPath stringByAppendingPathComponent:@"NoCloud"];
+//         NSString * snapshots = [cordovaDataDirectory stringByAppendingPathComponent:@"ionic_built_snapshots"];
+//         wwwPath = [snapshots stringByAppendingPathComponent:[persistedPath lastPathComponent]];
+//     }
     self.basePath = wwwPath;
     return wwwPath;
 }
